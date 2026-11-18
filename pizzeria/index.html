@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Al Forno di Rosa – Pizzeria a San Giovanni Lupatoto (sito dimostrativo)</title>
+<meta name="description" content="Sito dimostrativo di una pizzeria di fantasia: menu, orari e richiesta di prenotazione.">
+<meta name="robots" content="noindex">
+<style>
+  /* Caratteri ospitati sul sito (licenza SIL Open Font License 1.1, vedi cartella fonts/):
+     nessuna connessione a server esterni quando si apre la pagina. */
+  @font-face{font-family:"Gloock";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Gloock.woff2) format("woff2")}
+  @font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/InstrumentSans.woff2) format("woff2")}
+
+  :root{
+    --pomodoro:#B92F1C;
+    --pomodoro-scuro:#8F2214;
+    --basilico:#2E5A3C;
+    --mozzarella:#FFFEFB;
+    --crosta:#F0B548;
+    --inchiostro:#1F2621;
+    --grigio:#5B635D;
+    --bordo-campo:#7A817C;
+    --errore:#A3271A;
+    --linea:#E6E1D8;
+    --segnaposto:#FCEBC4;
+    --serif:"Gloock", Georgia, serif;
+    --sans:"Instrument Sans", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{font-family:var(--sans);color:var(--inchiostro);background:var(--mozzarella);font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  /* Focus ben visibile: scuro sugli sfondi chiari, chiaro sugli sfondi colorati */
+  :focus-visible{outline:3px solid var(--inchiostro);outline-offset:3px;border-radius:4px}
+  .top :focus-visible,.hero :focus-visible,.info :focus-visible,.piede :focus-visible{outline-color:var(--crosta)}
+  .prenota :focus-visible{outline-color:var(--mozzarella)}
+  .wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+  .salta{position:absolute;left:16px;top:-100px;background:var(--crosta);color:var(--inchiostro);padding:10px 16px;border-radius:8px;font-weight:600;z-index:20}
+  .salta:focus{top:12px}
+  .da-completare{background:var(--segnaposto);color:var(--inchiostro);border-radius:4px;padding:0 4px}
+
+  /* Avviso demo */
+  .avviso-demo{background:var(--crosta);color:var(--inchiostro);font-size:.95rem;text-align:center;padding:8px 16px}
+
+  /* Header */
+  .top{background:var(--pomodoro);color:var(--mozzarella)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+  .logo{font-family:var(--serif);font-size:1.6rem;text-decoration:none;letter-spacing:.01em}
+  .top nav ul{display:flex;gap:28px;align-items:center;list-style:none;padding:0}
+  .top nav a{text-decoration:none;font-weight:500}
+  .top nav a:hover{text-decoration:underline;text-underline-offset:4px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:600;text-decoration:none;border-radius:999px;padding:12px 22px;font-size:1rem;border:2px solid transparent;cursor:pointer;min-height:48px}
+  .btn-crosta{background:var(--crosta);color:var(--inchiostro)}
+  .btn-crosta:hover{background:#F5C567}
+  .btn-ghost{border-color:var(--mozzarella);color:var(--mozzarella)}
+  .btn-ghost:hover{background:rgba(255,254,251,.12)}
+  .btn-rosso{background:var(--pomodoro);color:var(--mozzarella)}
+  .btn-rosso:hover{background:var(--pomodoro-scuro)}
+  .btn-verde{background:var(--basilico);color:var(--mozzarella)}
+  .btn-chiaro{background:var(--mozzarella);color:var(--basilico)}
+  .btn-chiaro:hover{background:#F1EEE6}
+
+  /* Hero */
+  .hero{background:var(--pomodoro);color:var(--mozzarella);padding:40px 0 0;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end}
+  .hero-text{padding-bottom:72px}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.8rem,6.4vw,5.4rem);line-height:.98;letter-spacing:-.01em;max-width:11ch}
+  .hero p{margin-top:24px;font-size:1.2rem;max-width:36ch}
+  .hero .azioni{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  /* La foto del forno dentro una cornice ad arco, come la bocca del forno */
+  .arco{justify-self:end;width:100%;max-width:470px;aspect-ratio:47/52;border-radius:235px 235px 0 0;overflow:hidden;border:10px solid var(--pomodoro-scuro);border-bottom:0;margin:0}
+  .arco img{width:100%;height:100%;object-fit:cover;object-position:35% 50%;display:block}
+  figcaption.credito,.didascalia{font-size:.85rem;color:var(--grigio);margin-top:8px}
+
+  /* Info bar */
+  .info{background:var(--inchiostro);color:var(--mozzarella)}
+  .info .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:22px 0}
+  .info div{display:flex;flex-direction:column}
+  .info .etichetta{color:#C7CCC8;font-size:.9rem}
+  .info strong{font-weight:600}
+  .aperto{color:#8FD19E}
+  .chiuso{color:#F7A493}
+
+  section{padding:96px 0}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.05}
+  .intro{color:var(--grigio);max-width:56ch;margin-top:12px}
+
+  /* Menu: tutto visibile, i filtri servono solo a restringere */
+  .filtri{display:flex;gap:8px;margin:36px 0 0;flex-wrap:wrap;position:sticky;top:0;z-index:5;background:var(--mozzarella);padding:12px 0;border-bottom:1px solid var(--linea)}
+  .filtro{font:inherit;font-weight:600;padding:10px 20px;min-height:44px;border-radius:999px;border:2px solid var(--basilico);background:var(--mozzarella);color:var(--basilico);cursor:pointer}
+  .filtro[aria-pressed="true"]{background:var(--basilico);color:var(--mozzarella)}
+  .conteggio{margin-top:12px;color:var(--grigio);font-size:.95rem}
+  .categoria{padding-top:40px;scroll-margin-top:80px}
+  .categoria h3.cat{font-family:var(--serif);font-weight:400;font-size:1.9rem;color:var(--pomodoro)}
+  .categoria .sotto{color:var(--grigio);margin-top:4px}
+  .foto-piatti{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0 8px}
+  .foto-piatti figure{margin:0}
+  .foto-piatti img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:16px;display:block;background:#EEE9E0}
+  .menu-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:64px}
+  .piatto{padding:20px 0;border-bottom:1px solid var(--linea)}
+  .piatto-riga{display:flex;align-items:baseline;gap:12px}
+  .piatto h4{font-size:1.15rem;font-weight:600}
+  .punti{flex:1;border-bottom:2px dotted #C9C2B6;transform:translateY(-4px)}
+  .prezzo{font-family:var(--serif);font-size:1.25rem;color:var(--pomodoro);white-space:nowrap}
+  .piatto p{color:var(--grigio);font-size:.98rem;margin-top:4px;max-width:44ch}
+  .tag{display:inline-block;font-size:.8rem;font-weight:600;color:var(--basilico);background:#E3EEE5;border-radius:6px;padding:1px 8px;margin-left:6px;vertical-align:2px}
+  .nota{margin-top:24px;color:var(--grigio);font-size:.95rem;max-width:70ch}
+
+  /* Prenotazione */
+  .prenota{background:var(--basilico);color:var(--mozzarella)}
+  .prenota .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+  .prenota .intro{color:#E3EEE5}
+  .foto-prenota{margin:32px 0 0}
+  .foto-prenota img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block}
+  .modulo{background:var(--mozzarella);color:var(--inchiostro);border-radius:20px;padding:32px}
+  .campi{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .campo{display:flex;flex-direction:column;gap:6px}
+  .campo.largo{grid-column:1/-1}
+  label{font-weight:600}
+  .facoltativo{font-weight:400;color:var(--grigio)}
+  .aiuto{font-size:.92rem;color:var(--grigio)}
+  input,select,textarea{font:inherit;color:inherit;background:#fff;border:2px solid var(--bordo-campo);border-radius:10px;padding:10px 12px;min-height:48px;width:100%}
+  textarea{min-height:96px;resize:vertical}
+  input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--inchiostro);outline-offset:1px}
+  [aria-invalid="true"]{border-color:var(--errore)}
+  .errore{color:var(--errore);font-size:.95rem;font-weight:600}
+  .invio{margin-top:24px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+  .invio .btn{width:100%}
+  .esito{margin-top:16px;padding:14px 16px;border-radius:10px;background:#E3EEE5;color:var(--inchiostro)}
+  .informativa{margin-top:24px;padding-top:20px;border-top:1px solid var(--linea);font-size:.92rem;color:var(--grigio)}
+  .informativa a{color:var(--inchiostro);font-weight:600}
+
+  /* Dove siamo */
+  .dove .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .orari{width:100%;border-collapse:collapse;margin-top:28px}
+  .orari th,.orari td{padding:10px 0;border-bottom:1px solid var(--linea);text-align:left;font-weight:400}
+  .orari td{text-align:right;color:var(--grigio)}
+  .orari tr.oggi th,.orari tr.oggi td{font-weight:700;color:var(--inchiostro)}
+  .indirizzo{background:#F4F1EA;border-radius:20px;padding:32px}
+  .indirizzo address{font-style:normal;font-size:1.25rem;line-height:1.4;margin:12px 0 24px}
+  .contatti{display:flex;flex-direction:column;gap:12px}
+
+  footer.piede{background:var(--inchiostro);color:#C7CCC8;padding:40px 0 120px;font-size:.95rem}
+  footer.piede .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
+  .piede p+p{margin-top:6px}
+  .piede a{color:var(--mozzarella)}
+
+  /* Barra mobile */
+  .barra{display:none}
+
+  @media (max-width:860px){
+    .top nav{display:none}
+    .hero .wrap{grid-template-columns:1fr}
+    .hero-text{padding-bottom:0}
+    .arco{justify-self:center;max-width:340px}
+    .foto-piatti{grid-template-columns:1fr;gap:16px}
+    .info .wrap{grid-template-columns:1fr;gap:12px}
+    section{padding:64px 0}
+    .menu-grid{grid-template-columns:1fr}
+    .prenota .wrap,.dove .wrap{grid-template-columns:1fr;gap:32px}
+    .modulo{padding:24px 18px}
+    .campi{grid-template-columns:1fr}
+    footer.piede .wrap{grid-template-columns:1fr}
+    .barra{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--mozzarella);border-top:1px solid var(--linea);z-index:10}
+  }
+</style>
+</head>
+<body>
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<p class="avviso-demo">Sito dimostrativo: “Al Forno di Rosa” è un’attività di fantasia. Indirizzo, telefono, menu e prezzi sono esempi.</p>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">Al Forno di Rosa</a>
+    <nav aria-label="Menu principale">
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#prenota">Prenota</a></li>
+        <li><a href="#dove">Orari e indirizzo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenuto">
+  <section class="hero" aria-labelledby="titolo">
+    <div class="wrap">
+      <div class="hero-text">
+        <h1 id="titolo">Pizza cotta nel forno a legna.</h1>
+        <p>Pizzeria e cucina veronese in centro a San Giovanni Lupatoto. Si mangia al tavolo o si porta a casa.</p>
+        <div class="azioni">
+          <a class="btn btn-crosta" href="#prenota">Prenota un tavolo</a>
+          <a class="btn btn-ghost" href="#menu">Guarda il menu</a>
+        </div>
+      </div>
+
+      <figure class="arco">
+        <img src="foto/forno-fuoco.jpg" width="1920" height="1280" fetchpriority="high"
+             alt="Legna che brucia dentro un forno in mattoni, accanto a due pizze in cottura">
+      </figure>
+    </div>
+  </section>
+
+  <div class="info">
+    <div class="wrap">
+      <div><span class="etichetta">Oggi</span><strong id="stato">Orari nella sezione “Orari e indirizzo”</strong></div>
+      <div><span class="etichetta">Indirizzo</span><strong>Via dell’Esempio 1, San Giovanni Lupatoto</strong></div>
+      <div><span class="etichetta">Asporto</span><strong>Ordina al telefono: 045 000 0000</strong></div>
+    </div>
+  </div>
+
+  <section id="menu" aria-labelledby="menu-titolo">
+    <div class="wrap">
+      <h2 id="menu-titolo">Il menu</h2>
+      <p class="intro">Piatti e prezzi di esempio. Nel sito vero il menu viene fornito e controllato dal locale.</p>
+
+      <div class="filtri" role="group" aria-label="Filtra il menu">
+        <button type="button" class="filtro" aria-pressed="true" data-cat="tutto">Tutto il menu</button>
+        <button type="button" class="filtro" aria-pressed="false" data-cat="classiche">Pizze classiche</button>
+        <button type="button" class="filtro" aria-pressed="false" data-cat="speciali">Pizze speciali</button>
+        <button type="button" class="filtro" aria-pressed="false" data-cat="cucina">Dalla cucina</button>
+      </div>
+      <p class="conteggio" id="conteggio" aria-live="polite">Stai vedendo tutto il menu: 14 piatti.</p>
+
+      <div class="categoria" id="classiche" data-cat="classiche">
+      <h3 class="cat">Pizze classiche</h3>
+      <div class="foto-piatti">
+        <figure>
+          <img src="foto/margherita.jpg" width="1280" height="960" loading="lazy" decoding="async"
+               alt="Pizza margherita con pomodoro, mozzarella a chiazze e foglie di basilico">
+          <figcaption class="didascalia">Margherita. Foto illustrativa.</figcaption>
+        </figure>
+        <figure>
+          <img src="foto/capricciosa.jpg" width="1280" height="960" loading="lazy" decoding="async"
+               alt="Pizza capricciosa con prosciutto cotto, funghi, carciofi e olive nere">
+          <figcaption class="didascalia">Capricciosa. Foto illustrativa.</figcaption>
+        </figure>
+      </div>
+      <div class="menu-grid">
+        <div class="piatto"><div class="piatto-riga"><h4>Margherita</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">7,00 €</span></div><p>Pomodoro, mozzarella fior di latte, basilico.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Marinara</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">6,00 €</span></div><p>Pomodoro, aglio, origano, olio extravergine d’oliva.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Diavola</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">8,50 €</span></div><p>Pomodoro, fior di latte, salame piccante.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Capricciosa</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">9,50 €</span></div><p>Prosciutto cotto, funghi, carciofi, olive, fior di latte.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Quattro formaggi</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">9,00 €</span></div><p>Fior di latte, gorgonzola, Monte Veronese, grana.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Verdure grigliate <span class="tag">vegetariana</span></h4><span class="punti" aria-hidden="true"></span><span class="prezzo">8,50 €</span></div><p>Zucchine, melanzane, peperoni grigliati, fior di latte.</p></div>
+      </div>
+
+      </div>
+
+      <div class="categoria" id="speciali" data-cat="speciali">
+      <h3 class="cat">Pizze speciali</h3>
+      <div class="menu-grid">
+        <div class="piatto"><div class="piatto-riga"><h4>Radicchio e Monte Veronese</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">11,00 €</span></div><p>Fior di latte, radicchio, Monte Veronese, sopressa.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Cipolla e speck</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">12,00 €</span></div><p>Base bianca, cipolla caramellata, speck, noci.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Bufala e crudo</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">12,50 €</span></div><p>Pomodoro, mozzarella di bufala, prosciutto crudo.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Zucca e salsiccia</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">10,50 €</span></div><p>Crema di zucca, salsiccia, scamorza affumicata, rosmarino.</p></div>
+      </div>
+
+      </div>
+
+      <div class="categoria" id="cucina" data-cat="cucina">
+      <h3 class="cat">Dalla cucina</h3>
+      <div class="menu-grid">
+        <div class="piatto"><div class="piatto-riga"><h4>Risotto all’Amarone</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">13,00 €</span></div><p>Riso Vialone Nano, vino Amarone, Monte Veronese.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Bigoli al ragù d’anatra</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">12,00 €</span></div><p>Pasta fresca al torchio con ragù d’anatra.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Pastissada de caval</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">16,00 €</span></div><p>Stufato di cavallo alla veronese, con polenta.</p></div>
+        <div class="piatto"><div class="piatto-riga"><h4>Tiramisù</h4><span class="punti" aria-hidden="true"></span><span class="prezzo">5,50 €</span></div><p>Savoiardi, caffè, crema al mascarpone, cacao.</p></div>
+      </div>
+      </div>
+
+      <p class="nota"><strong>Allergeni:</strong> alcuni piatti contengono sostanze che possono provocare allergie o intolleranze. Prima di ordinare chiedi al personale l’elenco degli allergeni presenti in ogni piatto.</p>
+    </div>
+  </section>
+
+  <section id="prenota" class="prenota" aria-labelledby="prenota-titolo">
+    <div class="wrap">
+      <div>
+        <h2 id="prenota-titolo">Prenota un tavolo</h2>
+        <p class="intro">Compila il modulo: si aprirà il tuo programma di posta con il messaggio già scritto, ti basta inviarlo. La prenotazione è confermata solo quando ti rispondiamo.</p>
+        <p class="intro">Preferisci parlare con qualcuno?</p>
+        <p style="margin-top:16px"><a class="btn btn-chiaro" href="tel:+390450000000">Chiama lo 045 000 0000</a></p>
+        <figure class="foto-prenota">
+          <img src="foto/pizza-pala.jpg" width="1280" height="853" loading="lazy" decoding="async"
+               alt="Una pizza con pomodorini e mozzarella sulla pala di legno, davanti alla bocca accesa di un forno a legna">
+        </figure>
+      </div>
+
+      <form class="modulo" id="modulo" novalidate aria-describedby="nota-obbligatori">
+        <p id="nota-obbligatori" class="aiuto" style="margin-bottom:20px">Tutti i campi sono obbligatori, tranne le note.</p>
+        <div class="campi">
+          <div class="campo largo">
+            <label for="nome">Nome e cognome</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required aria-describedby="err-nome">
+            <span class="errore" id="err-nome" hidden>Scrivi il nome per la prenotazione.</span>
+          </div>
+          <div class="campo">
+            <label for="data">Giorno</label>
+            <input id="data" name="data" type="date" required aria-describedby="err-data">
+            <span class="errore" id="err-data" hidden>Scegli un giorno a partire da oggi.</span>
+          </div>
+          <div class="campo">
+            <label for="ora">Ora</label>
+            <select id="ora" name="ora" required aria-describedby="err-ora">
+              <option value="">Scegli l’ora</option>
+              <option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option>
+              <option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
+            </select>
+            <span class="errore" id="err-ora" hidden>Scegli l’ora.</span>
+          </div>
+          <div class="campo">
+            <label for="persone">Numero di persone</label>
+            <input id="persone" name="persone" type="number" inputmode="numeric" min="1" max="30" required aria-describedby="err-persone">
+            <span class="errore" id="err-persone" hidden>Scrivi un numero da 1 a 30.</span>
+          </div>
+          <div class="campo largo">
+            <label for="note">Note <span class="facoltativo">(facoltativo)</span></label>
+            <textarea id="note" name="note" aria-describedby="aiuto-note"></textarea>
+            <span class="aiuto" id="aiuto-note">Per esempio un seggiolone o un tavolo all’aperto. Per allergie e intolleranze avvisa il personale al telefono o in sala: non scriverle qui.</span>
+          </div>
+        </div>
+        <div class="invio">
+          <button class="btn btn-rosso" type="submit">Prepara l’email di prenotazione</button>
+        </div>
+        <div class="esito" id="esito" role="status" hidden></div>
+
+        <div class="informativa">
+          <p><strong>Come usiamo questi dati.</strong> Titolare del trattamento: <span class="da-completare">[ragione sociale e indirizzo del locale]</span>. Usiamo nome, giorno, ora, numero di persone, note e il tuo indirizzo email solo per rispondere alla richiesta di prenotazione (art. 6, par. 1, lett. b del GDPR). I dati non vengono salvati da questo sito: arrivano al locale come una normale email. Puoi chiedere in ogni momento di vederli, correggerli o cancellarli. <a href="privacy.html">Leggi l’informativa completa</a>.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="dove" class="dove" aria-labelledby="dove-titolo">
+    <div class="wrap">
+      <div>
+        <h2 id="dove-titolo">Orari e indirizzo</h2>
+        <table class="orari">
+          <caption class="intro" style="text-align:left">Orari di apertura (esempio)</caption>
+          <tbody id="orari">
+            <tr data-g="1"><th scope="row">Lunedì</th><td>Chiuso</td></tr>
+            <tr data-g="2"><th scope="row">Martedì</th><td>18:30 – 23:00</td></tr>
+            <tr data-g="3"><th scope="row">Mercoledì</th><td>18:30 – 23:00</td></tr>
+            <tr data-g="4"><th scope="row">Giovedì</th><td>18:30 – 23:00</td></tr>
+            <tr data-g="5"><th scope="row">Venerdì</th><td>18:30 – 23:30</td></tr>
+            <tr data-g="6"><th scope="row">Sabato</th><td>12:00 – 14:30, 18:30 – 23:30</td></tr>
+            <tr data-g="0"><th scope="row">Domenica</th><td>12:00 – 14:30, 18:30 – 23:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="indirizzo">
+        <h3>Dove siamo</h3>
+        <address>Via dell’Esempio 1<br>37057 San Giovanni Lupatoto (VR)</address>
+        <div class="contatti">
+          <a class="btn btn-rosso" href="tel:+390450000000">Chiama lo 045 000 0000</a>
+          <a class="btn btn-verde" href="https://wa.me/390000000000" rel="noopener">Scrivi su WhatsApp</a>
+          <a class="btn btn-ghost" style="border-color:var(--basilico);color:var(--basilico)" href="https://www.google.com/maps/search/?api=1&amp;query=San+Giovanni+Lupatoto" rel="noopener">Apri la mappa su Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="piede">
+  <div class="wrap">
+    <div>
+      <p><strong>Al Forno di Rosa</strong> di <span class="da-completare">[nome della ditta o società]</span></p>
+      <p>Sede: Via dell’Esempio 1, 37057 San Giovanni Lupatoto (VR)</p>
+      <p>P.IVA <span class="da-completare">[00000000000]</span> · Email <span class="da-completare">[email del locale]</span></p>
+    </div>
+    <div>
+      <p><a href="privacy.html">Privacy e cookie</a></p>
+      <p>Sito dimostrativo realizzato da Matteo Tandurella. Attività, indirizzo, telefono e prezzi sono di fantasia.</p>
+      <p>Foto illustrative da Wikimedia Commons:
+        <a href="https://commons.wikimedia.org/wiki/File:Wood_fire_brick_oven_for_baking_pizza.jpg" rel="noopener">forno</a> di Basheer Tome,
+        <a href="https://commons.wikimedia.org/wiki/File:Pizza_baking_in_Wood-fired_oven.jpg" rel="noopener">pizza sulla pala</a> di Jared Tarbell,
+        <a href="https://commons.wikimedia.org/wiki/File:Pizza_capricciosa.jpg" rel="noopener">capricciosa</a> di Phil Whitehouse
+        (licenza <a href="https://creativecommons.org/licenses/by/2.0/deed.it" rel="noopener">CC BY 2.0</a>);
+        <a href="https://commons.wikimedia.org/wiki/File:Margherita_Originale.JPG" rel="noopener">margherita</a> di Mario56
+        (licenza <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.it" rel="noopener">CC BY-SA 3.0</a>).
+        Foto non modificate.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="barra">
+  <a class="btn btn-rosso" href="tel:+390450000000">Chiama</a>
+  <a class="btn btn-verde" href="#prenota">Prenota</a>
+</div>
+
+<script>
+  // ---- Filtri del menu: di base si vede tutto, i pulsanti restringono a una categoria ----
+  const filtri = [...document.querySelectorAll('.filtro')];
+  const categorie = [...document.querySelectorAll('.categoria')];
+  const conteggio = document.getElementById('conteggio');
+  filtri.forEach(f=>f.addEventListener('click',()=>{
+    const cat = f.dataset.cat;
+    filtri.forEach(x=>x.setAttribute('aria-pressed', x===f));
+    let n = 0;
+    categorie.forEach(c=>{
+      const vedi = cat==='tutto' || c.dataset.cat===cat;
+      c.hidden = !vedi;
+      if(vedi) n += c.querySelectorAll('.piatto').length;
+    });
+    conteggio.textContent = cat==='tutto'
+      ? `Stai vedendo tutto il menu: ${n} piatti.`
+      : `Stai vedendo solo “${f.textContent}”: ${n} piatti. Premi “Tutto il menu” per vedere tutto.`;
+  }));
+
+  // ---- Orario di oggi ----
+  const riga = document.querySelector(`#orari tr[data-g="${new Date().getDay()}"]`);
+  riga.classList.add('oggi');
+  const orario = riga.lastElementChild.textContent;
+  const stato = document.getElementById('stato');
+  if(orario==='Chiuso'){ stato.textContent='Oggi chiuso'; stato.className='chiuso'; }
+  else { stato.textContent='Aperto oggi: '+orario; stato.className='aperto'; }
+
+  // ---- Modulo di prenotazione: prepara un'email, non salva nulla ----
+  const EMAIL_LOCALE = 'prenotazioni@esempio.it'; // da sostituire con l'email vera del locale
+  const form = document.getElementById('modulo');
+  const oggiISO = new Date(Date.now() - new Date().getTimezoneOffset()*60000).toISOString().slice(0,10);
+  document.getElementById('data').min = oggiISO;
+
+  const controlli = {
+    nome: v => v.trim().length > 0,
+    data: v => v !== '' && v >= oggiISO,
+    ora: v => v !== '',
+    persone: v => /^\d+$/.test(v) && +v >= 1 && +v <= 30,
+  };
+
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    let primoErrore = null;
+    for(const [id, ok] of Object.entries(controlli)){
+      const campo = document.getElementById(id);
+      const valido = ok(campo.value);
+      campo.setAttribute('aria-invalid', !valido);
+      document.getElementById('err-'+id).hidden = valido;
+      if(!valido && !primoErrore) primoErrore = campo;
+    }
+    const esito = document.getElementById('esito');
+    if(primoErrore){ esito.hidden = true; primoErrore.focus(); return; }
+
+    const v = id => document.getElementById(id).value.trim();
+    const giorno = new Date(v('data')+'T12:00').toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});
+    const testo = `Buongiorno,\nvorrei prenotare un tavolo.\n\nNome: ${v('nome')}\nGiorno: ${giorno}\nOra: ${v('ora')}\nPersone: ${v('persone')}` + (v('note') ? `\nNote: ${v('note')}` : '') + `\n\nGrazie`;
+    const oggetto = `Prenotazione ${giorno} ore ${v('ora')} – ${v('persone')} persone`;
+    window.location.href = `mailto:${EMAIL_LOCALE}?subject=${encodeURIComponent(oggetto)}&body=${encodeURIComponent(testo)}`;
+    esito.innerHTML = `Si sta aprendo il tuo programma di posta con la richiesta già scritta. Se non si apre, scrivi a <strong>${EMAIL_LOCALE}</strong> oppure chiama lo 045 000 0000.`;
+    esito.hidden = false;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+ {
+  "file": "rasoio",
+  "titolo": "Straight razor.jpg",
+  "autore": "Toxophilus",
+  "licenza": "CC BY-SA 4.0",
+  "licenza_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "fonte": "https://commons.wikimedia.org/wiki/File:Straight_razor.jpg",
+  "dim": "1280,1708"
+ },
+ {
+  "file": "forbici",
+  "titolo": "Hair texturizing shears.jpg",
+  "autore": "Gaurav Dhwaj Khadka",
+  "licenza": "CC BY-SA 4.0",
+  "licenza_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "fonte": "https://commons.wikimedia.org/wiki/File:Hair_texturizing_shears.jpg",
+  "dim": "1280,1708"
+ },
+ {
+  "file": "crema",
+  "titolo": "Crema para afeitar.JPG",
+  "autore": "CoffeeAddict",
+  "licenza": "CC BY 3.0",
+  "licenza_url": "https://creativecommons.org/licenses/by/3.0",
+  "fonte": "https://commons.wikimedia.org/wiki/File:Crema_para_afeitar.JPG",
+  "dim": "1280,960"
+ },
+ {
+  "file": "pennello",
+  "titolo": "Shaving-Brush.jpg",
+  "autore": "Evan-Amos",
+  "licenza": "Public domain",
+  "licenza_url": "",
+  "fonte": "https://commons.wikimedia.org/wiki/File:Shaving-Brush.jpg",
+  "dim": "1280,1830"
+ }
+]

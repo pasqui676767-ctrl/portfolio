@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Impianti dentali a Verona Sud: prima visita con panoramica | Studio Dentistico Elvore</title>
+<meta name="description" content="Landing page dimostrativa: prima visita implantologica a Verona Sud con radiografia panoramica in studio, piano di cura e preventivo scritti.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Impianti dentali a Verona Sud: prima visita con panoramica in studio">
+<meta property="og:description" content="45 minuti: visita, panoramica in studio, piano di cura e preventivo scritti.">
+<meta property="og:image" content="share.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f4f3f1">
+<link rel="preload" href="fonts/SourceSerif4.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/LibreFranklin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Source Serif 4"; font-weight: 400 700; font-display: swap; src: url(fonts/SourceSerif4.woff2) format("woff2"); }
+@font-face { font-family: "Libre Franklin"; font-weight: 400 700; font-display: swap; src: url(fonts/LibreFranklin.woff2) format("woff2"); }
+:root {
+  --f-display: "Source Serif 4", Georgia, serif; --f-text: "Libre Franklin", system-ui, sans-serif;
+  --bg: #f4f3f1; --alt: #e8e5e1; --hero-bg: #ebe8e4; --card: #ffffff; --ink: #2f2e2d; --muted: #5d5a56; --muted-inv: #bdbab6;
+  --line: #dad6d1; --line-strong: #bcb7b0; --chip: #e3e8df; --accent-strong: #4d5c46;
+  --cta: #4d5c46; --cta-hover: #3f4c39; --cta-ink: #ffffff; --cta-shadow: #2c3628;
+  --focus: #1f5fd6; --error: #b3261e; --r: 16px; --r-btn: 10px;
+}
+</style>
+<link rel="stylesheet" href="landing.css">
+<!-- Pubblicità sanitaria (L. 175/1992, L. 145/2018 art. 1 c. 525): solo informazioni, niente sconti, "gratis",
+     recensioni di pazienti o foto prima/dopo. Meta Pixel solo con banner cookie e consenso (vedi LEGGIMI.md). -->
+</head>
+<body>
+<p class="demo">Pagina dimostrativa: “Studio Dentistico Elvore” è uno studio di fantasia.</p>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Studio Dentistico Elvore, inizio pagina"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 21.5V12a9.5 9.5 0 0 1 19 0v9.5h-6V12a3.5 3.5 0 0 0-7 0v9.5z"/></svg>Studio Elvore</a>
+    <div class="top__call">
+      <small>Segreteria lun–ven 9–19</small>
+      <!-- numero di telefono dello studio da inserire -->
+      <a class="btn btn--line btn--small" href="tel:+390000000000"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Chiama</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero__text">
+        <p class="eyebrow">Borgo Roma · Verona Sud</p>
+        <h1>Impianti dentali: alla prima visita la panoramica la facciamo in studio</h1>
+        <p class="hero__lead">In 45 minuti il dentista ti visita, guarda la radiografia con te e ti spiega le strade possibili. Esci con piano di cura e preventivo scritti, voce per voce.</p>
+      </div>
+
+      <form class="lead-form" id="modulo" data-steps data-label="Richiedi la prima visita" novalidate aria-labelledby="form-title">
+        <div class="lead-form__head">
+          <p class="lead-form__title" id="form-title">Prima visita</p>
+          <p class="lead-form__count" aria-live="polite">Passaggio 1 di 3</p>
+        </div>
+        <div class="bar" aria-hidden="true"><span></span></div>
+
+        <fieldset class="step">
+          <legend>Per cosa vorresti venire?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="caso" value="Manca un dente"><span>Mi manca un dente</span></label>
+            <label class="choice"><input type="radio" name="caso" value="Mancano più denti"><span>Mi mancano più denti</span></label>
+            <label class="choice"><input type="radio" name="caso" value="La protesi si muove"><span>La protesi mobile si muove</span></label>
+            <label class="choice"><input type="radio" name="caso" value="Un parere"><span>Vorrei solo un parere</span></label>
+          </div>
+          <p class="err" hidden>Scegli una risposta per andare avanti.</p>
+        </fieldset>
+
+        <fieldset class="step" hidden>
+          <legend>Quando preferisci essere richiamato?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="richiamata" value="Mattina"><span>Di mattina</span></label>
+            <label class="choice"><input type="radio" name="richiamata" value="Pomeriggio"><span>Di pomeriggio</span></label>
+            <label class="choice"><input type="radio" name="richiamata" value="Indifferente"><span>Va bene sempre</span></label>
+          </div>
+          <p class="err" hidden>Scegli una risposta per andare avanti.</p>
+        </fieldset>
+
+        <fieldset class="step" hidden>
+          <legend>Come ti chiamiamo?</legend>
+          <div class="field"><label for="f-nome">Nome e cognome</label>
+            <input id="f-nome" name="nome" type="text" autocomplete="name" required aria-describedby="e-nome">
+            <p class="err" id="e-nome" hidden>Scrivi nome e cognome.</p></div>
+          <div class="field"><label for="f-tel">Telefono</label>
+            <input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="e-tel">
+            <p class="err" id="e-tel" hidden>Scrivi un numero di telefono valido: ti richiamiamo lì.</p></div>
+          <label class="consent" for="f-ok"><input id="f-ok" name="consenso" type="checkbox" value="si" required aria-describedby="e-ok"><span>Acconsento all’uso dei dati che ho indicato, anche quelli sulla mia salute, solo per fissare la visita (art. 9.2.a GDPR). <a href="privacy.html">Informativa privacy</a></span><span class="err" id="e-ok" hidden>Serve il consenso per mandare la richiesta.</span></label>
+        </fieldset>
+
+        <div class="form-nav">
+          <button class="back" type="button" hidden>Indietro</button>
+          <button class="btn btn--main" type="button" data-next>Avanti</button>
+          <button class="btn btn--main" type="submit" data-send hidden>Richiedi la prima visita</button>
+        </div>
+        <p class="err send-err" hidden>Invio non riuscito. Riprova o chiamaci.</p>
+        <p class="reassure"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5z"/></svg>La segreteria ti richiama entro un giorno lavorativo.</p>
+      </form>
+
+      <div class="hero__more">
+        <ul class="ticks">
+          <li>Radiografia panoramica fatta in studio, lo stesso giorno</li>
+          <li>Preventivo scritto: impianto, corona e controlli, ogni voce con il suo prezzo</li>
+          <li>La visita non ti impegna all’intervento</li>
+        </ul>
+        <div class="hero__photo"><img src="assets/img/photo-f78512277-1280.webp" width="1280" height="963" alt="Sala di cura con poltrona odontoiatrica e riunito" fetchpriority="high"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="trust" aria-label="In breve">
+    <div class="wrap">
+      <p><b>45 minuti</b><span>la prima visita</span></p>
+      <p><b>In studio</b><span>la radiografia panoramica</span></p>
+      <p><b>Per iscritto</b><span>piano di cura e preventivo</span></p>
+      <p><b>Verona Sud</b><span>in Borgo Roma</span></p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap split">
+      <div>
+        <h2>Quando serve un impianto?</h2>
+        <p style="margin-top:12px">Un impianto è una vite in titanio che prende il posto della radice. Sopra si fissa il dente nuovo, che non si toglie. Di solito se ne parla quando:</p>
+        <ul class="ticks">
+          <li>ti hanno tolto un dente e lo spazio è rimasto vuoto</li>
+          <li>il ponte si muove o il dente che lo regge è da togliere</li>
+          <li>la protesi mobile si sposta quando mangi o parli</li>
+        </ul>
+        <p style="margin-top:20px" class="muted">Se l’impianto è la strada giusta per te lo dice solo la visita, guardando osso e gengive.</p>
+      </div>
+      <div class="split__img"><img src="assets/img/photo-f29443056-960.webp" alt="Modello di arcata con due impianti in titanio e i denti fissati sopra" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="sec sec--dark">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2>Come funziona</h2>
+        <p class="muted">Dopo la prima visita decidi tu se andare avanti.</p>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="card__img"><img src="assets/img/photo-f79378525-960.webp" alt="Radiografia panoramica di un’arcata con quattro impianti" loading="lazy"></div><div class="card__body"><span class="num">1</span><h3>Visita e panoramica</h3><p>Il dentista guarda bocca e gengive; la panoramica mostra quanto osso c’è.</p></div></div>
+        <div class="card"><div class="card__img"><img src="assets/img/photo-f196715621-960.webp" alt="Poltrona odontoiatrica in una sala luminosa" loading="lazy"></div><div class="card__body"><span class="num">2</span><h3>Piano e preventivo scritti</h3><p>Ti spieghiamo le strade possibili e i tempi, poi ti diamo tutto per iscritto.</p></div></div>
+        <div class="card"><div class="card__img"><img src="assets/img/photo-f90162760-960.webp" alt="Strumenti chirurgici sterili su un telo" loading="lazy"></div><div class="card__body"><span class="num">3</span><h3>Intervento e controlli</h3><p>In anestesia locale; il dente fisso arriva quando l’osso è guarito.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap split" style="align-items:start">
+      <div>
+        <h2>Chi ti visita</h2>
+        <div class="reviews-slot" style="margin-top:24px">
+          <b>Foto e nome del dentista</b>
+          <p class="muted">Qui vanno la foto vera del direttore sanitario, il nome, i titoli e l’iscrizione all’Albo. Sono informazioni permesse e danno fiducia. Niente recensioni di pazienti o foto prima/dopo: nella pubblicità sanitaria vanno evitate.</p>
+        </div>
+        <h3 style="margin-top:32px">Cosa c’è nel preventivo</h3>
+        <ul class="list" style="margin-top:12px">
+          <li><b>Impianto</b><span>La vite in titanio, con la sua marca</span></li>
+          <li><b>Moncone e corona</b><span>Il pezzo che collega e il dente in ceramica</span></li>
+          <li><b>Innesto d’osso</b><span>Solo se la panoramica dice che serve</span></li>
+          <li><b>Controlli</b><span>Le visite del primo anno dopo l’intervento</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Domande frequenti</h2>
+        <div class="faq" style="margin-top:24px">
+          <details><summary>L’intervento fa male?</summary><p>Si fa in anestesia locale. Nei giorni dopo può esserci gonfiore, che di solito passa con gli antidolorifici indicati dal dentista.</p></details>
+          <details><summary>Quanto costa un impianto?</summary><p>Dipende da quanti denti mancano e dall’osso. Per questo il prezzo te lo diamo dopo la panoramica, per iscritto. Il costo della prima visita te lo dice la segreteria quando ti richiama.</p></details>
+          <details><summary>Quanto dura il percorso?</summary><p>L’osso guarisce intorno all’impianto in alcuni mesi, poi arriva il dente fisso. I tempi del tuo caso sono scritti nel piano.</p></details>
+          <details><summary>Chi non può fare l’impianto?</summary><p>Con poco osso serve prima un innesto. Fumo, diabete non controllato e alcune terapie aumentano i rischi: ne parli alla visita.</p></details>
+          <details><summary>Ho già una panoramica recente</summary><p>Portala: se è di pochi mesi fa e si legge bene, la usiamo.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt final">
+    <div class="wrap">
+      <div>
+        <h2>Richiedi la prima visita</h2>
+        <p class="muted" style="margin-top:10px">Un minuto per il modulo: la segreteria ti richiama entro un giorno lavorativo.</p>
+      </div>
+      <div class="btns">
+        <a class="btn btn--main" href="#modulo">Richiedi la prima visita</a>
+        <a class="btn btn--line" href="tel:+390000000000">Chiama</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><b>Studio Dentistico Elvore</b> · Borgo Roma, Verona · P.IVA <span class="da-completare">numero</span></p>
+    <p>Direttore sanitario: <span class="da-completare">nome e titoli</span>, iscritto all’Albo degli Odontoiatri di Verona n. <span class="da-completare">numero</span>. Informazioni sanitarie ai sensi della L. 175/1992.</p>
+    <p><a href="privacy.html">Privacy</a> · <a href="credits.html">Crediti delle foto (Wikimedia Commons)</a> · Questa pagina non usa cookie.</p>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Azioni rapide">
+  <a class="btn btn--line" href="tel:+390000000000">Chiama</a>
+  <a class="btn btn--main" href="#modulo">Prima visita</a>
+</nav>
+
+<script src="landing.js" defer></script>
+</body>
+</html>
